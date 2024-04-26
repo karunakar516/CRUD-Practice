@@ -5,6 +5,7 @@ const productRoute=require("./routes/product.route.js")
 const app = express()
 const port = 3000
 
+require('dotenv').config(); 
 //middleware
 app.use(express.json());
 app.use(express.urlencoded({extended:false}))
@@ -16,7 +17,7 @@ app.get('/', (req, res) => {
     res.send('Hello World!')
 });
 
-mongoose.connect('mongodb+srv://karunakarbalivada786:21L31A0516@cluster0.u0i84qf.mongodb.net/CRUD-API?retryWrites=true&w=majority&appName=Cluster0')
+mongoose.connect(process.env.MONGOOSE_URL)
   .then(() =>{
     console.log("Connected to DB");
     app.listen(port, () => {
